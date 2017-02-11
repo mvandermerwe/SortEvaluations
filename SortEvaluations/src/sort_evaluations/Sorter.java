@@ -46,12 +46,13 @@ public interface Sorter<Type extends Comparable<? super Type>>
 
 
   /**
-   * FIXME: write a Swap Routine that will swap the given two values in the array
-   * In in of your code where you swap things, use this swap method. 
+   * A Swap Routine that will swap the given two values in the array 
    */
   public static <Type> void swap(ArrayList<Type> array, int from, int to)
   {
-	  
+	  Type temp = array.get(from);
+	  array.set(from, array.get(to));
+	  array.set(to, temp);
   }
   
 }
