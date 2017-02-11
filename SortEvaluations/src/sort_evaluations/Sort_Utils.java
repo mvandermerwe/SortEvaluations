@@ -16,6 +16,8 @@ public class Sort_Utils
 {
 
 	// FIXME: create two fields to store start time and end time values
+	private long startTime;
+	private long endTime;
 
 	/**
 	 * test to make sure the array is sorted from smallest to largest
