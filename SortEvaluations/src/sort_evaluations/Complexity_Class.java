@@ -9,5 +9,6 @@ package sort_evaluations;
  */
 public enum Complexity_Class
 {
-	// FIXME: create "N log N" and "N squared" tags
+	//"N log N" and "N squared" tags
+	NLogN, Nsquared
 }
