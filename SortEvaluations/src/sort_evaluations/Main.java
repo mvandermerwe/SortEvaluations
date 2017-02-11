@@ -1,4 +1,5 @@
 /**
+ * @author Roman Clark and Mark Van Der Merwe
  * 
  */
 package sort_evaluations;
