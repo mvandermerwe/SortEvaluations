@@ -9,37 +9,47 @@ package sort_evaluations;
 import java.util.ArrayList;
 
 /**
- *        FIXME: every file should have your name (and your partner's name) on it, as well as the date, 
- *        a useful description, etc.
+ * @author Mark Van der Merwe and Roman Clark
+ * 
+ *         This class is a simple insertion sort.
  */
 
-public class Insertion_Sort // make generic and implement Sorter 
-{
+public class Insertion_Sort<Type extends Comparable<? super Type>> implements Sorter<Type> {
 
 	/**
-	 * FIXME: Return the Name of the sort
+	 * Return the Name of the sort
 	 */
-	public String name_of_sort();
+	public String name_of_sort() {
+		return "Insertion_Sort";
+	}
 
 	/**
-	 * No affect on insertion sort
-	 * FIXME: Simply print a debug message saying this is ignored
+	 * No affect on insertion sort.
 	 */
-	public void set_constant( double constant );
+	public void set_constant(double constant) {
+		System.out.println("Ignored, doesn't effect insertion sort.");
+	}
 
 	/**
-	 * Note: the actual insertion sort code should be written in the Sort_Utils package
-	 * call that code in this method
-	 * FIXME: sort the entire array using insertion sort
+	 * Note: the actual insertion sort code should be written in the Sort_Utils
+	 * package call that code in this method. Sorts the entire array using
+	 * insertion sort
+	 * 
+	 * @param array
+	 *            - array to be sorted.
 	 */
-	public void sort( ArrayList<Type> array );
+	public void sort(ArrayList<Type> array) {
+		Sort_Utils.insertion_sort(array, 0, array.size());
+	}
 
 	/**
-	 * FIXME: return what you believe the Big O of insertion sort should be
+	 * Return believed Big O of insertion sort should be
+	 * 
 	 * @return the expected complexity of this algorithm
 	 */
 	@Override
-	public Complexity_Class get_expected_complexity_class();
-
+	public Complexity_Class get_expected_complexity_class() {
+		return Complexity_Class.Nsquared;
+	}
 
 }
