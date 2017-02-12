@@ -19,7 +19,11 @@ public class Sort_Utils {
 	private long endTime;
 
 	/**
-	 * test to make sure the array is sorted from smallest to largest
+	 * Test to make sure the array is sorted from smallest to largest.
+	 * 
+	 * @param array
+	 *            - array to assert is sorted
+	 * @return whether array is sorted
 	 */
 	private static boolean is_sorted(ArrayList<Integer> array) {
 		// If size is 0 or 1, array guaranteed to be sorted.
@@ -41,49 +45,100 @@ public class Sort_Utils {
 
 	/**
 	 * test to (kindof) make sure two arrays contain the same values
+	 * 
+	 * @param array1
+	 *            - first array to compare.
+	 * @param array2
+	 *            - second array to compare.
+	 * @return whether the provided arrays's sums are equal.
 	 */
 	private static boolean sum_equals(ArrayList<Integer> array1, ArrayList<Integer> array2) {
-		// FIXME: write code to sum up the values in the two arrays and return
-		// true if they are the same.
-		// this is an approximation to the question: do the two arrays contain
-		// the same
-		// elements. This is used when you are concerned your sort may be
-		// "clobbering" data
-		return false;
+		if (array1.size() != array2.size()) {
+			// If two are diff size, can't be equal.
+			return false;
+		}
+
+		// Add together all elements in both arrays and compare sums.
+		int sumArray1 = 0;
+		int sumArray2 = 0;
+
+		for (int index = 0; index < array1.size(); index++) {
+			sumArray1 += array1.get(index);
+			sumArray2 += array2.get(index);
+		}
+
+		return sumArray1 == sumArray2;
 	}
 
 	/**
 	 * generate an array of 'size' which is already sorted
+	 * 
+	 * @param size
+	 *            - length of sorted array.
+	 * @return array list of sorted data of specified size.
 	 */
 	private static ArrayList<Integer> generate_sorted_array(int size) {
-		// FIXME: write this code. should take less than 2 minutes to write
-		// the first value in the array should be 0, and each value after that
-		// one greater.
+		// Generate arraylist with each value same as index.
+		ArrayList<Integer> sortedArray = new ArrayList<>();
+		for (int index = 0; index < size; index++) {
+			sortedArray.set(index, index);
+		}
+		return sortedArray;
 	}
 
 	/**
 	 * generate an array of 'size' which is in reverse order largest to smallest
+	 * 
+	 * @param size
+	 *            - length of back sorted array.
+	 * @return array list of reverse sorted data of specified size.
 	 */
 	private static ArrayList<Integer> generate_reverse_sorted_array(int size) {
-		// FIXME: copy and paste the above and then make the very simple changes
-		// to store reverse sorted values.
+		// Generate arraylist with value size - index.
+		ArrayList<Integer> sortedArray = new ArrayList<>();
+		for (int index = 0; index < size; index++) {
+			sortedArray.set(index, size - index);
+		}
+		return sortedArray;
 	}
 
 	/**
 	 * generate an array of 'size' that has random elements with values from 0
 	 * to max
+	 * 
+	 * @param size
+	 *            - length of array.
+	 * @param max
+	 *            - highest bound for random val.
+	 * @return array list of random data.
 	 */
 	private static ArrayList<Integer> generate_random_array(int size, int max) {
-		// FIXME: write this code. should take less than 3 minutes to write. Use
-		// a Random number generator
+		Random randomNumGen = new Random();
+
+		// Generate arraylist with random value.
+		ArrayList<Integer> sortedArray = new ArrayList<>();
+		for (int index = 0; index < size; index++) {
+			sortedArray.set(index, randomNumGen.nextInt(max));
+		}
+		return sortedArray;
 	}
 
 	/**
 	 * generate an array of 'size' that has all the same element
+	 * 
+	 * @param size
+	 *            - length of array.
+	 * @param element
+	 *            - element to place in each position.
+	 * @return array list of same data.
 	 */
 	private static ArrayList<Integer> generate_same_array(int size, int element) {
-		// FIXME: write this code. should generate an array of SIZE elements
-		// each of value ELEMENT
+		// Generate arraylist with each location being element.
+		ArrayList<Integer> sortedArray = new ArrayList<>();
+		for (int index = 0; index < size; index++) {
+			sortedArray.set(index, element);
+		}
+		return sortedArray;
 	}
 
 	/**
@@ -289,22 +344,22 @@ public class Sort_Utils {
 	 * start the timer
 	 */
 	private void timer_on() {
-		// FIXME: save the current time under start time
+		this.startTime = System.nanoTime();
 	}
 
 	/**
 	 * turn off the timer
 	 */
 	private void timer_off() {
-		// FIXME: save the current time under end time
+		this.endTime = System.nanoTime();
 	}
 
 	/**
 	 * get the time in seconds between on and off.
 	 */
 	private double get_time() {
-		// FIXME: return the time between on and off in seconds
-		return 0;
+		// Divide for seconds.
+		return (endTime - startTime) / 1000000000.;
 	}
 
 }
