@@ -1,4 +1,11 @@
-
+/**
+ * Pseudocode:
+ * 1. Determine gap size
+ * 2. Insertion sort elements in array at every gap jump
+ * 3. Decrease gap size
+ * 4. Repeat step 2&3 until gap size is 1
+ *  
+ */
 package sort_evaluations;
 
 import java.util.ArrayList;

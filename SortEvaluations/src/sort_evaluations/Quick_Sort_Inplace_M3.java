@@ -1,4 +1,10 @@
-
+/**
+ * Pseudocode:
+ * 1. Test for single element array
+ * 2. If 3 or more elements in array, choose first 3 elements, median of these 3 elements becomes pivot
+ * 3. Move all values less than pivot to left of pivot and all values greater than pivot to right of pivot 
+ * 4. Quicksort left half and quicksort right half
+ */
 package sort_evaluations;
 
 import java.util.ArrayList;

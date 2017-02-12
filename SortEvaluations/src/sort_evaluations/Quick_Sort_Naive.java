@@ -1,4 +1,14 @@
-
+/**
+ * Pseudocode:
+ * 1. If array small enough, insertion sort it
+ * 2. Choose pivot element
+ * 3. Place all the small elements in one array
+ * 4. Place all the large elements in one array
+ * 5. Place the pivot in one array
+ * 6. Quicksort small array and quicksort large array
+ * 7. Add together small array, pivot, and large array back into array 
+ * 
+ */
 package sort_evaluations;
 
 import java.util.ArrayList;
@@ -57,7 +67,7 @@ public class Quick_Sort_Naive<Type extends Comparable<? super Type>> extends Qui
 	 * quicksort large
 	 * quicksort small
 	 * 
-	 * put small + pivots + larg back into array
+	 * put small + pivots + large back into array
 	 */
 	public void quick_sort_naive( ArrayList<Type> array )
 	{

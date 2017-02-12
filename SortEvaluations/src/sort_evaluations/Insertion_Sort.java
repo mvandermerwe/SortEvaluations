@@ -1,3 +1,9 @@
+/**
+ * Pseudocode:
+ * 1. Start with first two elements
+ * 2. For every element, if the element is less than the element before it, swap elements
+ * 3. Swap until element is greater than element before it
+ */
 package sort_evaluations;
 
 import java.util.ArrayList;

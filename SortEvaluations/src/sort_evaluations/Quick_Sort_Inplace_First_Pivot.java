@@ -1,4 +1,9 @@
-
+/**
+ * Pseudocode:
+ * 1. Check for small size array, insertion sort if small enough
+ * 2. Choose first element as array and use it as pivot
+ * 3. Follow quicksort algorithm
+ */
 package sort_evaluations;
 
 import java.util.ArrayList;

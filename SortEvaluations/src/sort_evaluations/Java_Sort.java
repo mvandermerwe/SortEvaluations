@@ -1,4 +1,3 @@
-
 package sort_evaluations;
 
 import java.util.ArrayList;

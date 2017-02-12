@@ -1,4 +1,11 @@
-
+/**
+ * Pseudocode:
+ * 1. Test for single element array
+ * 2. Divide array in half
+ * 3. Merge Sort first half
+ * 4. Merge Sort second half
+ * 5. Combine halves
+ */
 package sort_evaluations;
 
 import java.util.ArrayList;
