@@ -260,11 +260,31 @@ public class Sort_Utils {
 	/**
 	 * Insertion Sort.
 	 * 
-	 * FIXME: write an inplace insertion sort that works on the VIRTUAL array
-	 * defined by the actual array from [start --> end]
+	 * An inplace insertion sort that works on the VIRTUAL array defined by the
+	 * actual array from [start --> end]
+	 * 
+	 * @param array
+	 *            - array to sort.
+	 * @param start
+	 *            - start value to sort from in the array.
+	 * @param end
+	 *            - end value to sort to in the array - NOTE: THIS IS AN
+	 *            EXCLUSIVE UPPER BOUND.
 	 */
 	public static <Type extends Comparable<? super Type>> void insertion_sort(ArrayList<Type> array, int start,
 			int end) {
+		// Go through each element.
+		for (int index = start; index < end; index++) {
+			for (int idx = index; idx > start; idx--) {
+				// Each element compares to the one before it until it is
+				// greater than the one before it.
+				if (array.get(idx).compareTo(array.get(idx - 1)) < 0) {
+					Type temp = array.get(idx - 1);
+					array.set(idx - 1, array.get(idx));
+					array.set(idx, temp);
+				}
+			}
+		}
 	}
 
 	/**
