@@ -275,14 +275,12 @@ public class Sort_Utils {
 			int end) {
 		// Go through each element.
 		for (int index = start; index < end; index++) {
-			for (int idx = index; idx > start; idx--) {
-				// Each element compares to the one before it until it is
-				// greater than the one before it.
-				if (array.get(idx).compareTo(array.get(idx - 1)) < 0) {
-					Type temp = array.get(idx - 1);
-					array.set(idx - 1, array.get(idx));
-					array.set(idx, temp);
-				}
+			// Each element compares to the one before it until it is
+			// greater than the one before it.
+			for (int idx = index; idx > start && array.get(idx).compareTo(array.get(idx - 1)) < 0; idx--) {
+				Type temp = array.get(idx - 1);
+				array.set(idx - 1, array.get(idx));
+				array.set(idx, temp);
 			}
 		}
 	}
