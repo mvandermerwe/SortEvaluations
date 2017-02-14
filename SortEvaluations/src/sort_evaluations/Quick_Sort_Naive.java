@@ -40,7 +40,8 @@ public class Quick_Sort_Naive<Type extends Comparable<? super Type>> extends Qui
 	 */
 	@Override
 	protected Type choose_pivot(ArrayList<Type> array, int start, int end) {
-		return array.get(start);
+		Sorter.swap(array, start, end);
+		return array.get(end);
 		// return median_of_three( array );
 	}
 

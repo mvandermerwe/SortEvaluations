@@ -32,7 +32,8 @@ public class Quick_Sort_Inplace_Random_Pivot<Type extends Comparable<? super Typ
 	 *            = index of end of array
 	 */
 	protected Type choose_pivot(ArrayList<Type> array, int start, int end) {
-		return array.get(start + random.nextInt(end - start));
+		Sorter.swap(array, start + random.nextInt(end - start), end);
+		return array.get(end);
 	}
 
 	/**
