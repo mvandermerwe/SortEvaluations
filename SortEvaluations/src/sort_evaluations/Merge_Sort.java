@@ -10,70 +10,129 @@ package sort_evaluations;
 
 import java.util.ArrayList;
 
+import javax.sound.sampled.Control.Type;
+
 /**
  * @author H. James de St. Germain
  * @date Spring 2017
  * 
  *       regular merge sort
  */
-public class Merge_Sort// implement sorter
-{
+public class Merge_Sort<Type extends Comparable<? super Type>> implements Sorter<Type> {
+
+	double insertionCutoff = 5;
 
 	/**
-	 * FIXME: have a value for switching over to insertion sort
+	 * The name of the sort
 	 */
-
-	/**
-	 * FIXME: The name of the sort
-	 */
-	public String name_of_sort();;
+	public String name_of_sort() {
+		return "Merge sort";
+	}
 
 	/**
 	 * Merge Sort
 	 * 
-	 * split array in half
-	 * sort left
-	 * sort right
-	 * combine
+	 * split array in half sort left sort right combine
 	 * 
 	 * 
-	 * @param array          the values to sort from small to high
-	 * @param low            the index of the starting value in the "virtual array"
-	 * @param high           the index of the ending value in the "virtual array"
+	 * @param array
+	 *            the values to sort from small to high
+	 * @param low
+	 *            the index of the starting value in the "virtual array"
+	 * @param high
+	 *            the index of the ending value in the "virtual array"
 	 * 
 	 */
-	private void merge_sort( ArrayList<Type> array, ArrayList<Type> auxillary, int low, int high );
+	private void merge_sort(ArrayList<Type> array, ArrayList<Type> auxillary, int low, int high) {
+		// If high is less than low, already sorted
+		if (high <= low)
+			return;
+		int mid = low + (high - low) / 2;
+		// Sort left half
+		merge_sort(array, auxillary, low, mid);
+		// Sort right half
+		merge_sort(array, auxillary, mid + 1, high);
+		// Combine halves
+		combine(array, auxillary, low, mid, high);
+
+	}
 
 	/**
 	 * combine the values in array into the auxiliary
 	 * 
-	 * @param array           - original values (the entire array)
-	 * @param auxillary       - spare space 
-	 * @param low             - low,mid are the lower array
-	 * @param mid             - mid,high are the upper array
+	 * @param array
+	 *            - original values (the entire array)
+	 * @param auxillary
+	 *            - spare space
+	 * @param low
+	 *            - low,mid are the lower array
+	 * @param mid
+	 *            - mid,high are the upper array
 	 * @param high
 	 * 
-	 * combine the sub arrays in the _array_ parameter. use the _auxillary_ parameter for scratch space
+	 *            combine the sub arrays in the _array_ parameter. use the
+	 *            _auxillary_ parameter for scratch space
 	 */
 
-	private void combine( ArrayList<Type> array, ArrayList<Type> auxillary, int low, int mid, int high );
+	private void combine(ArrayList<Type> array, ArrayList<Type> auxillary, int low, int mid, int high) {
+		// Creates a copy of the array for scratch space
+		for (int k = 0; k < array.size(); k++) {
+			auxillary.add(array.get(k));
+		}
+		int i = low;
+		int j = mid + 1;
+		for (int k = low; k <= high; k++) {
+
+			// If index in lower half of array is past midpoint, grab next
+			// element from higher half
+			if (i > mid) {
+				array.set(k, auxillary.get(j));
+				j++;
+				// If index in higher half of array is past highpoint, grab next
+				// element from lower half
+			} else if (j > high) {
+				array.set(k, auxillary.get(i));
+				// If current element in higher half of array is less than
+				// current element of lower half, grab element from higher half
+			} else if (auxillary.get(j).compareTo(auxillary.get(i)) < 0) {
+				array.set(k, auxillary.get(j));
+				j++;
+				// If all other conditions return false, grab element from lower
+				// half of array
+			} else {
+				array.set(k, auxillary.get(i));
+				i++;
+			}
+		}
+	}
 
 	/**
 	 * Allow the insertion sort cut off to be changed
 	 */
-	public void set_constant( double cutoff );
+	public void set_constant(double cutoff) {
+		this.insertionCutoff = cutoff;
+	}
 
 	/**
 	 * sort the array
 	 */
 	@Override
-	public void sort( ArrayList<Type> array )
-	{
-		// Build the auxiliary array
-		// call mergesort 
+	public void sort(ArrayList<Type> array) {
+		// If array only has one element, do nothing
+		if (array.size() == 1)
+			return;
+		// Creates an auxillary array that is copy of original
+		ArrayList<Type> auxillary = new ArrayList<Type>();
+		for (int k = 0; k < array.size(); k++) {
+			auxillary.add(array.get(k));
+		}
+		// Calls merge sort on entire array
+		merge_sort(array, auxillary, 0, array.size());
 	}
 
 	@Override
-	public Complexity_Class get_expected_complexity_class();
+	public Complexity_Class get_expected_complexity_class() {
+		return Complexity_Class.NLogN;
+	}
 
 }
