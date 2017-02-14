@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public abstract class Quick_Sort<Type extends Comparable<? super Type>> implements Sorter<Type> {
 
 	// a field for the insertion sort switchover level
-	private int insertionSwitchover;
+	protected int insertionSwitchover;
 
 	/**
 	 * Choose a Pivot (return it's value in the array) Modify array as

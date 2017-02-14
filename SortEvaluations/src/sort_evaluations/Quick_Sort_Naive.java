@@ -21,26 +21,26 @@ import javax.lang.model.element.QualifiedNameable;
  *         This is a naive implementation of quicksort which uses copies of
  *         Arraylists instead of using a single array "in-place".
  * 
- *         This code should be much easier to "understand" than in-place manipulations
+ *         This code should be much easier to "understand" than in-place
+ *         manipulations
  * 
- *         WARNING: even though it extends quick sort, it DOES NOT use the super class
- *         implementation!
- *         
- *         Note: you must implement the quick_sort abstract class before this will work.
+ *         WARNING: even though it extends quick sort, it DOES NOT use the super
+ *         class implementation!
+ * 
+ *         Note: you must implement the quick_sort abstract class before this
+ *         will work.
  * 
  * 
  */
-public class Quick_Sort_Naive<Type extends Comparable<? super Type>> extends Quick_Sort<Type>
-{
+public class Quick_Sort_Naive<Type extends Comparable<? super Type>> extends Quick_Sort<Type> {
 
 	/**
 	 * start off with just using the first value as a pivot, but you should
 	 * (after everything is working) implement median of three
 	 */
 	@Override
-	protected Type choose_pivot( ArrayList<Type> array, int start, int end )
-	{
-		return array.get(0);
+	protected Type choose_pivot(ArrayList<Type> array, int start, int end) {
+		return array.get(start);
 		// return median_of_three( array );
 	}
 
@@ -49,33 +49,28 @@ public class Quick_Sort_Naive<Type extends Comparable<? super Type>> extends Qui
 	 * 
 	 * FIXME: returns the value of the middle element of the array list
 	 */
-	private Type median_of_three( ArrayList<Type> array )
-	{
+	private Type median_of_three(ArrayList<Type> array) {
 		return array.get(0);
 	}
 
 	/**
 	 * A "Naive" implementation of Quick Sort which uses extra memory
 	 * 
-	 * Algorithm:
-	 * if array small enough, insertion sort it
-	 * choose a pivot element (using Median of 3)
-	 * put all the small elements in one array
-	 * put all the large elements in one array
-	 * put all the pivot elements in one array
+	 * Algorithm: if array small enough, insertion sort it choose a pivot
+	 * element (using Median of 3) put all the small elements in one array put
+	 * all the large elements in one array put all the pivot elements in one
+	 * array
 	 * 
-	 * quicksort large
-	 * quicksort small
+	 * quicksort large quicksort small
 	 * 
 	 * put small + pivots + large back into array
 	 */
-	public void quick_sort_naive( ArrayList<Type> array )
-	{
+	public void quick_sort_naive(ArrayList<Type> array) {
+		
 		/*
 		 * Base Case
 		 */
-		// if (array.size() <= //FIXME: super class insertion cutoff value)
-		{
+		if (array.size() <= this.insertionSwitchover) {
 			Sort_Utils.insertion_sort(array, 0, array.size() - 1);
 			return;
 		}
@@ -92,18 +87,12 @@ public class Quick_Sort_Naive<Type extends Comparable<? super Type>> extends Qui
 		 */
 		Type pivot_value = this.median_of_three(array);
 
-		for (int i = 0; i < array.size(); i++)
-		{
-			if (array.get(i).compareTo(pivot_value) < 0)
-			{
+		for (int i = 0; i < array.size(); i++) {
+			if (array.get(i).compareTo(pivot_value) < 0) {
 				small_elements.add(array.get(i));
-			}
-			else if (array.get(i).equals((pivot_value)))
-			{
+			} else if (array.get(i).equals((pivot_value))) {
 				pivots.add(array.get(i));
-			}
-			else
-			{
+			} else {
 				large_elements.add(array.get(i));
 			}
 		}
@@ -127,20 +116,18 @@ public class Quick_Sort_Naive<Type extends Comparable<? super Type>> extends Qui
 	/**
 	 * Name of Sort_Tester
 	 */
-	public String name_of_sort()
-	{
-		return "Quick Sort Naive (Cutoff: "; // + super class insertion cutoff level + ")";
+	public String name_of_sort() {
+		return "Quick Sort Naive (Cutoff: " +  this.insertionSwitchover + ")";
 	}
 
 	/**
-	 * Convert the Type[] array into an array list and
-	 * then call the appropriate sort routine!
+	 * Convert the Type[] array into an array list and then call the appropriate
+	 * sort routine!
 	 * 
 	 * @param array
 	 *            the array of data to sort from small to large
 	 */
-	public void sort( ArrayList<Type> array )
-	{
+	public void sort(ArrayList<Type> array) {
 		quick_sort_naive(array);
 	}
 
