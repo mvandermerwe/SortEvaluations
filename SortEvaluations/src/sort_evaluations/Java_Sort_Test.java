@@ -6,15 +6,15 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-public class Quick_Sort_Inplace_Random_Pivot_Test {
+public class Java_Sort_Test {
 
 	/**
-	 * Test running the sort through the Quick Sort Inplace Random Pivot class.
-	 * Simple test case of small array.
+	 * Test running the sort through the Insertion_Sort class. Simple test case
+	 * of small array.
 	 */
 	@Test
 	public void testSort() {
-		Quick_Sort_Inplace_Random_Pivot<Integer> quickSort = new Quick_Sort_Inplace_Random_Pivot<>();
+		Java_Sort<Integer> javaSort = new Java_Sort<>();
 
 		ArrayList<Integer> intArray = new ArrayList<>();
 		intArray.add(4);
@@ -32,7 +32,7 @@ public class Quick_Sort_Inplace_Random_Pivot_Test {
 		intShouldBe.add(8);
 		intShouldBe.add(23);
 
-		quickSort.sort(intArray);
+		javaSort.sort(intArray);
 		assertArrayEquals(intShouldBe.toArray(), intArray.toArray());
 	}
 
@@ -41,11 +41,11 @@ public class Quick_Sort_Inplace_Random_Pivot_Test {
 	 */
 	@Test
 	public void testZeroSort() {
-		Quick_Sort_Inplace_Random_Pivot<Integer> quickSort = new Quick_Sort_Inplace_Random_Pivot<>();
+		Java_Sort<Integer> javaSort = new Java_Sort<>();
 
 		ArrayList<Integer> intArray = new ArrayList<>();
 		ArrayList<Integer> intShouldBe = new ArrayList<>();
-		quickSort.sort(intArray);
+		javaSort.sort(intArray);
 		assertArrayEquals(intShouldBe.toArray(), intArray.toArray());
 	}
 

@@ -9,7 +9,7 @@ import org.junit.Test;
 public class Quick_Sort_Inplace_M3_Test {
 
 	/**
-	 * Test running the sort through the Insertion_Sort class. Simple test case
+	 * Test running the sort through the Quick Sort Inplace M3 class. Simple test case
 	 * of small array.
 	 */
 	@Test
