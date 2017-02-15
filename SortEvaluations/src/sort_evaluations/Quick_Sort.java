@@ -60,34 +60,38 @@ public abstract class Quick_Sort<Type extends Comparable<? super Type>> implemen
 		// PLEASE: please make an attempt before Tuesday
 		Type partition = choose_pivot(array, left, right);
 
-		// For now place partition at the front. Maybe change?
-		Sorter.swap(array, array.indexOf(partition), left);
-
-		int i = left + 1;
+		int i = left - 1;
 		int j = right;
 
 		// Sort array.
-		while (i <= j) {
+		while (true) {
 			// Count from left till we find something larger than pivot.
-			while (array.get(i).compareTo(partition) < 0) {
-				i++;
+			while (array.get(++i).compareTo(partition) < 0) {
+				if (i == right || i == j) {
+					break;
+				}
 			}
 
 			// Count from right till we find something smaller than pivot.
-			while (array.get(j).compareTo(partition) > 0) {
-				j--;
+			while (array.get(--j).compareTo(partition) > 0) {
+				if (j == left) {
+					break;
+				}
 			}
 
+			if(i >= j ) {
+				break;
+			}
+			
 			// Swap elements at position i and j.
 			Sorter.swap(array, i, j);
-
 			// Continue this loop till pointers cross.
 		}
 
 		// Once sorted place partition at last position of j (should be
 		// partition's location between two sorted halves).
-		Sorter.swap(array, array.indexOf(partition), j);
-		return array.indexOf(partition);
+		Sorter.swap(array, right, i);
+		return i;
 
 	}
 
@@ -113,6 +117,10 @@ public abstract class Quick_Sort<Type extends Comparable<? super Type>> implemen
 		// 1) partition array
 		// 2) sort left
 		// 3) sort right (again, don't resort the pivot)
+
+		if (end - start < 2) {
+			return;
+		}
 
 		// If matches our switchover point to insertion, do that.
 		if (end - start == this.insertionSwitchover) {

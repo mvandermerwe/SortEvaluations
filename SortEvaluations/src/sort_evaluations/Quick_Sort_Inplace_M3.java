@@ -37,18 +37,37 @@ public class Quick_Sort_Inplace_M3<Type extends Comparable<? super Type>> extend
 		// FIXME: implement the Median of three algorithm.
 		// additionally, make sure to follow the comments above
 
-		int middle = start + (end - start)/2;
-		
-		
-		
-		return null;
+		int middle = start + (end - start) / 2;
+
+		// Compare items to sort start middle end.
+		int lo = start;
+		int mid = middle;
+		int hi = end;
+		if (array.get(start).compareTo(array.get(middle)) > 0) {
+			lo = middle;
+			mid = start;
+		} else if (array.get(middle).compareTo(array.get(end)) > 0) {
+			mid = end;
+			hi = middle;
+			if (array.get(end).compareTo(array.get(start)) < 0) {
+				lo = end;
+				mid = start;
+			}
+		}
+
+		// Sort accordingly.
+		Sorter.swap(array, lo, start);
+		Sorter.swap(array, mid, end);
+		Sorter.swap(array, hi, end-1);
+
+		return array.get(end);
 	}
 
 	/**
 	 * Name the sort
 	 */
 	public String name_of_sort() {
-		return "Quick Sort Inplace M3 Pivot (Cutoff: " +  this.insertionSwitchover + ")";
+		return "Quick Sort Inplace M3 Pivot (Cutoff: " + this.insertionSwitchover + ")";
 	}
 
 }
