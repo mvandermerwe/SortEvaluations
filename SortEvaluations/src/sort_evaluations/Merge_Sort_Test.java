@@ -10,7 +10,7 @@ public class Merge_Sort_Test {
 
 	/**
 	 * Test running the sort through the Insertion_Sort class. Simple test case
-	 * of small array.
+	 * of small array
 	 */
 	@Test
 	public void testSort() {
