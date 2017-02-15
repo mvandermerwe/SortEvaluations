@@ -26,7 +26,13 @@ public class Main
 	public static void main( String[] args )
 	{
 		ArrayList<Sorter<Integer>> sort_methods = new ArrayList<>();
-
+		sort_methods.add(new Insertion_Sort<Integer>());
+		sort_methods.add(new Merge_Sort<Integer>());
+		sort_methods.add(new Java_Sort<Integer>());
+		sort_methods.add(new Quick_Sort_Naive<Integer>());
+		sort_methods.add(new Quick_Sort_Inplace_First_Pivot<Integer>());
+		sort_methods.add(new Quick_Sort_Inplace_Random_Pivot<Integer>());
+		sort_methods.add(new Quick_Sort_Inplace_M3<Integer>());
 		// ...
 		
 	}
