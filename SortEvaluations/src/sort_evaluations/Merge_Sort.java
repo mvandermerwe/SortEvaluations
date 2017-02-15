@@ -44,7 +44,7 @@ public class Merge_Sort<Type extends Comparable<? super Type>> implements Sorter
 	 * 
 	 */
 	private void merge_sort(ArrayList<Type> array, ArrayList<Type> auxillary, int low, int high) {
-		// If array size is small enough, do insertion sort
+		// If array size is small enough, do insertion sor
 		
 		if(high<=low){
 			return;
