@@ -81,7 +81,7 @@ public class Sort_Utils {
 		// Generate arraylist with each value same as index.
 		ArrayList<Integer> sortedArray = new ArrayList<>();
 		for (int index = 0; index < size; index++) {
-			sortedArray.set(index, index);
+			sortedArray.add(index);
 		}
 		return sortedArray;
 	}
@@ -97,7 +97,7 @@ public class Sort_Utils {
 		// Generate arraylist with value size - index.
 		ArrayList<Integer> sortedArray = new ArrayList<>();
 		for (int index = 0; index < size; index++) {
-			sortedArray.set(index, size - index);
+			sortedArray.add(size - index);
 		}
 		return sortedArray;
 	}
@@ -118,7 +118,7 @@ public class Sort_Utils {
 		// Generate arraylist with random value.
 		ArrayList<Integer> sortedArray = new ArrayList<>();
 		for (int index = 0; index < size; index++) {
-			sortedArray.set(index, randomNumGen.nextInt(max));
+			sortedArray.add(randomNumGen.nextInt(max));
 		}
 		return sortedArray;
 	}
@@ -136,7 +136,7 @@ public class Sort_Utils {
 		// Generate arraylist with each location being element.
 		ArrayList<Integer> sortedArray = new ArrayList<>();
 		for (int index = 0; index < size; index++) {
-			sortedArray.set(index, element);
+			sortedArray.add(element);
 		}
 		return sortedArray;
 	}
@@ -177,10 +177,10 @@ public class Sort_Utils {
 		double time_random = -1;
 		double time_all_same = -1;
 
-		boolean do_sorted = false;
-		boolean do_reverse = false;
+		boolean do_sorted = true;
+		boolean do_reverse = true;
 		boolean do_random = true;
-		boolean do_same = false;
+		boolean do_same = true;
 
 		for (int count = start_count; count <= max_count; count += count_increment) {
 
@@ -222,13 +222,109 @@ public class Sort_Utils {
 			}
 
 			///////////////////////////////////////////////////
-			// FIXME: TEST RANDOM
+			// TEST RANDOM
+			if (do_random) {
+
+				try {
+					test = generate_random_array(count, count);
+
+					timer_on();
+					sort_routine.sort(test);
+					timer_off();
+					time_random = get_time();
+
+					if (!is_sorted(test)) {
+						System.out.printf("Error encountered. Array not sorted!\n");
+						return;
+					}
+
+					if (time_random > timeout_threshold_seconds) {
+						System.out.println("Sorting random array taking too long");
+						do_random = false;
+						time_random = -1;
+					}
+
+				} catch (java.lang.OutOfMemoryError error) {
+					System.out.println(" Sorting random numbers caused an out of memory error");
+					do_random = false;
+					time_random = -1;
+				} catch (java.lang.StackOverflowError error) {
+					System.out.println(
+							" Stack Overflow - Probably sorting random numbers caused an stack overflow error");
+					do_random = false;
+					time_random = -1;
+				}
+			}
 
 			/////////////////////////////////////////////////////////
-			// FIXME: TEST already SORTED
+			// TEST already SORTED
+			if (do_sorted) {
+
+				try {
+					test = generate_random_array(count, count);
+
+					timer_on();
+					sort_routine.sort(test);
+					timer_off();
+					time_sorted = get_time();
+
+					if (!is_sorted(test)) {
+						System.out.printf("Error encountered. Array not sorted!\n");
+						return;
+					}
+
+					if (time_sorted > timeout_threshold_seconds) {
+						System.out.println("Sorting sorted array taking too long");
+						do_sorted = false;
+						time_sorted = -1;
+					}
+
+				} catch (java.lang.OutOfMemoryError error) {
+					System.out.println(" Sorting sorted numbers caused an out of memory error");
+					do_sorted = false;
+					time_sorted = -1;
+				} catch (java.lang.StackOverflowError error) {
+					System.out.println(
+							" Stack Overflow - Probably sorting sorted numbers caused an stack overflow error");
+					do_sorted = false;
+					time_sorted = -1;
+				}
+			}
 
 			////////////////////////////////////////////////////////////////
 			// FIXME: TEST REVERSE SORTED
+			if (do_reverse) {
+
+				try {
+					test = generate_random_array(count, count);
+
+					timer_on();
+					sort_routine.sort(test);
+					timer_off();
+					time_reverse_sorted = get_time();
+
+					if (!is_sorted(test)) {
+						System.out.printf("Error encountered. Array not sorted!\n");
+						return;
+					}
+
+					if (time_sorted > timeout_threshold_seconds) {
+						System.out.println("Sorting reverse sorted array taking too long");
+						do_reverse = false;
+						time_reverse_sorted = -1;
+					}
+
+				} catch (java.lang.OutOfMemoryError error) {
+					System.out.println(" Sorting reverse sorted numbers caused an out of memory error");
+					do_reverse = false;
+					time_reverse_sorted = -1;
+				} catch (java.lang.StackOverflowError error) {
+					System.out.println(
+							" Stack Overflow - Probably sorting reverse sorted numbers caused an stack overflow error");
+					do_reverse = false;
+					time_reverse_sorted = -1;
+				}
+			}
 
 			//////////////////////////////////////////////////////////////////////
 			// Print out timing information!
@@ -242,15 +338,19 @@ public class Sort_Utils {
 			double time_worst = Math.max(time_random,
 					Math.max(time_sorted, Math.max(time_reverse_sorted, time_all_same)));
 
-			// if (sort_routine.get_expected_complexity_class() IS N log N then
-			// divide time by N Log N
-			{
-				double time_random_divided_by_N_log_N = 0; // FIXME compute this
-				double time_worst_divided_by_N_log_N = 0; // FIXME compute this
+			// Calculate constant on Big-Oh
+			if (sort_routine.get_expected_complexity_class() == Complexity_Class.NLogN) {
+				double time_random_divided_by_N_log_N = time_random / (count * Math.log(count));
+				double time_worst_divided_by_N_log_N = time_worst / (count * Math.log(count));
 
 				System.out.printf("%f\t%f\n", time_random_divided_by_N_log_N, time_worst_divided_by_N_log_N);
 			}
-			// FIXME: do the same for N squared
+			if (sort_routine.get_expected_complexity_class() == Complexity_Class.Nsquared) {
+				double time_random_divided_by_N_squared = time_random / (Math.pow(count, 2));
+				double time_worst_divided_by_N_squared = time_worst / (Math.pow(count, 2));
+
+				System.out.printf("%f\t%f\n", time_random_divided_by_N_squared, time_worst_divided_by_N_squared);
+			}
 
 			System.out.flush();
 		}

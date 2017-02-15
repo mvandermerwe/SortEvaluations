@@ -119,7 +119,7 @@ public abstract class Quick_Sort<Type extends Comparable<? super Type>> implemen
 		// 3) sort right (again, don't resort the pivot)
 
 		// If matches our switchover point to insertion, do that.
-		if (end - start <= 3) {
+		if (end - start <= this.insertionSwitchover) {
 			Sort_Utils.insertion_sort(array, start, end+1);
 			return;
 		}
