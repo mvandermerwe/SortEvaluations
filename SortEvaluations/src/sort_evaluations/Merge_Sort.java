@@ -45,19 +45,18 @@ public class Merge_Sort<Type extends Comparable<? super Type>> implements Sorter
 	 */
 	private void merge_sort(ArrayList<Type> array, ArrayList<Type> auxillary, int low, int high) {
 		// If array size is small enough, do insertion sort
-		if (high<=low)
-			return;
-//		if(array.size()<=insertionCutoff){
-//			Sort_Utils.insertion_sort(array, low, high);
-//		}
-		int mid = low + (high - low) / 2;
-		// Sort left half
-		merge_sort(array, auxillary, low, mid);
-		// Sort right half
-		merge_sort(array, auxillary, mid + 1, high);
-		// Combine halves
-		combine(array, auxillary, low, mid, high);
-
+		if((high-low)<=insertionCutoff){
+			Sort_Utils.insertion_sort(array, low, high+1);
+		}else{
+		
+			int mid = low + (high - low) / 2;
+			// Sort left half
+			merge_sort(array, auxillary, low, mid);
+			// Sort right half
+			merge_sort(array, auxillary, mid + 1, high);
+			// Combine halves
+			combine(array, auxillary, low, mid, high);
+		}
 	}
 
 	/**
@@ -80,8 +79,15 @@ public class Merge_Sort<Type extends Comparable<? super Type>> implements Sorter
 	private void combine(ArrayList<Type> array, ArrayList<Type> auxillary, int low, int mid, int high) {
 		int i = low;
 		int j = mid + 1;
+		
+		
+		// Make new copy of current array
+		auxillary.clear();
+		for (int l = 0; l < array.size(); l++) {
+			auxillary.add(array.get(l));
+		}
+			
 		for (int k = low; k <= high; k++) {
-
 			// If index in lower half of array is past midpoint, grab next
 			// element from higher half
 			if (i > mid) {
@@ -91,6 +97,7 @@ public class Merge_Sort<Type extends Comparable<? super Type>> implements Sorter
 				// element from lower half
 			} else if (j > high) {
 				array.set(k, auxillary.get(i));
+				i++;
 				// If current element in higher half of array is less than
 				// current element of lower half, grab element from higher half
 			} else if (auxillary.get(j).compareTo(auxillary.get(i)) < 0) {
