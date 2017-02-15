@@ -128,11 +128,8 @@ public class Merge_Sort<Type extends Comparable<? super Type>> implements Sorter
 	 */
 	@Override
 	public void sort(ArrayList<Type> array) {
-		// Creates an auxillary array that is copy of original
+		// Creates an auxillary array
 		ArrayList<Type> auxillary = new ArrayList<Type>();
-		for (int k = 0; k < array.size(); k++) {
-			auxillary.add(array.get(k));
-		}
 		// Calls merge sort on entire array
 		merge_sort(array, auxillary, 0, array.size()-1);
 	}
