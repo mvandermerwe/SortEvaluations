@@ -45,8 +45,12 @@ public class Merge_Sort<Type extends Comparable<? super Type>> implements Sorter
 	 */
 	private void merge_sort(ArrayList<Type> array, ArrayList<Type> auxillary, int low, int high) {
 		// If array size is small enough, do insertion sort
-		if((high-low)<=insertionCutoff){
-			Sort_Utils.insertion_sort(array, low, high+1);
+		
+		if(high<=low){
+			return;
+
+//		if((high-low)<=insertionCutoff){
+//			Sort_Utils.insertion_sort(array, low, high+1);
 		}else{
 		
 			int mid = low + (high - low) / 2;
