@@ -44,7 +44,7 @@ public class Merge_Sort<Type extends Comparable<? super Type>> implements Sorter
 	 * 
 	 */
 	private void merge_sort(ArrayList<Type> array, ArrayList<Type> auxillary, int low, int high) {
-		// If array size is small enough, do insertion sor
+		// If array size is small enough, do insertion sort
 		
 		if(high<=low){
 			return;
@@ -81,16 +81,13 @@ public class Merge_Sort<Type extends Comparable<? super Type>> implements Sorter
 	 */
 
 	private void combine(ArrayList<Type> array, ArrayList<Type> auxillary, int low, int mid, int high) {
+		// Make new copy of current array
+		for (int l = low; l <= high; l++) {
+			auxillary.set(l, array.get(l));
+		}
 		int i = low;
 		int j = mid + 1;
 		
-		
-		// Make new copy of current array
-		auxillary.clear();
-		for (int l = 0; l < array.size(); l++) {
-			auxillary.add(array.get(l));
-		}
-			
 		for (int k = low; k <= high; k++) {
 			// If index in lower half of array is past midpoint, grab next
 			// element from higher half
@@ -129,7 +126,10 @@ public class Merge_Sort<Type extends Comparable<? super Type>> implements Sorter
 	@Override
 	public void sort(ArrayList<Type> array) {
 		// Creates an auxillary array
-		ArrayList<Type> auxillary = new ArrayList<Type>();
+		ArrayList<Type> auxillary = new ArrayList<Type>(array.size());
+		for (int k = 0; k < array.size(); k++) {
+			auxillary.add(array.get(k));
+		}
 		// Calls merge sort on entire array
 		merge_sort(array, auxillary, 0, array.size()-1);
 	}
