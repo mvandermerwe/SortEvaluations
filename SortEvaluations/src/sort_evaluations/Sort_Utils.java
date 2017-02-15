@@ -292,7 +292,7 @@ public class Sort_Utils {
 			}
 
 			////////////////////////////////////////////////////////////////
-			// FIXME: TEST REVERSE SORTED
+			// TEST REVERSE SORTED
 			if (do_reverse) {
 
 				try {
