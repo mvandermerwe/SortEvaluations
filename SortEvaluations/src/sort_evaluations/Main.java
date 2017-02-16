@@ -24,7 +24,7 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		ArrayList<Sorter<Integer>> sort_methods = new ArrayList<>();
-		//sort_methods.add(new Insertion_Sort<Integer>());
+		sort_methods.add(new Insertion_Sort<Integer>());
 		sort_methods.add(new Shell_Sort<Integer>());
 		sort_methods.add(new Merge_Sort<Integer>());
 		sort_methods.add(new Java_Sort<Integer>());
@@ -37,7 +37,7 @@ public class Main {
 
 		// For each sort, test its performance on increasingly sized data sets.
 		for (Sorter<Integer> sort : sort_methods) {
-			sort_utils.test_and_time(sort, 0, 100000, 1000000000, 120);
+			sort_utils.test_and_time(sort, 0, 100000, 1000000000, 1200);
 		}
 		
 		

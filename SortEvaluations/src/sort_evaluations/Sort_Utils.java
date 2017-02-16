@@ -261,7 +261,7 @@ public class Sort_Utils {
 			if (do_sorted) {
 
 				try {
-					test = generate_random_array(count, count);
+					test = generate_sorted_array(count);
 
 					timer_on();
 					sort_routine.sort(test);
@@ -296,7 +296,7 @@ public class Sort_Utils {
 			if (do_reverse) {
 
 				try {
-					test = generate_random_array(count, count);
+					test = generate_reverse_sorted_array(count);
 
 					timer_on();
 					sort_routine.sort(test);
