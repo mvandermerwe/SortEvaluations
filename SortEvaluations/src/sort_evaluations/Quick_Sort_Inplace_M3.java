@@ -34,8 +34,6 @@ public class Quick_Sort_Inplace_M3<Type extends Comparable<? super Type>> extend
 	 *            = index of end of array
 	 */
 	protected Type choose_pivot(ArrayList<Type> array, int start, int end) {
-		// FIXME: implement the Median of three algorithm.
-		// additionally, make sure to follow the comments above
 
 		int middle = start + (end - start) / 2;
 
@@ -44,21 +42,17 @@ public class Quick_Sort_Inplace_M3<Type extends Comparable<? super Type>> extend
 		int mid = middle;
 		int hi = end;
 		if (array.get(start).compareTo(array.get(middle)) > 0) {
-			lo = middle;
-			mid = start;
+			Sorter.swap(array, start, middle);
 		} else if (array.get(middle).compareTo(array.get(end)) > 0) {
-			mid = end;
-			hi = middle;
+			Sorter.swap(array, middle, end);
 			if (array.get(end).compareTo(array.get(start)) < 0) {
-				lo = end;
-				mid = start;
+				Sorter.swap(array, start, middle);
 			}
 		}
 
 		// Sort accordingly.
-		Sorter.swap(array, lo, start);
-		Sorter.swap(array, mid, end);
-		Sorter.swap(array, hi, end-1);
+		Sorter.swap(array, end, end-1);
+		Sorter.swap(array, middle, end);
 
 		return array.get(end);
 	}

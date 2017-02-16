@@ -40,18 +40,33 @@ public class Quick_Sort_Naive<Type extends Comparable<? super Type>> extends Qui
 	 */
 	@Override
 	protected Type choose_pivot(ArrayList<Type> array, int start, int end) {
-		Sorter.swap(array, start, end);
-		return array.get(end);
-		// return median_of_three( array );
+		return median_of_three( array );
 	}
 
 	/**
 	 * Median of Three (choose the middle element position)
 	 * 
-	 * FIXME: returns the value of the middle element of the array list
 	 */
 	private Type median_of_three(ArrayList<Type> array) {
-		return array.get(0);
+		int middle = array.size() / 2;
+
+		// Compare items to sort start middle end.
+		int lo = 0;
+		int mid = middle;
+		int hi = array.size()-1;
+		if (array.get(0).compareTo(array.get(middle)) > 0) {
+			Sorter.swap(array, 0, middle);
+		} else if (array.get(middle).compareTo(array.get(array.size()-1)) > 0) {
+			Sorter.swap(array, middle, array.size()-1);
+			if (array.get(middle).compareTo(array.get(0)) < 0) {
+				Sorter.swap(array, 0, middle);
+			}
+		}
+
+		Sorter.swap(array, array.size()-1, array.size()-2);
+		Sorter.swap(array, middle, array.size()-1);
+
+		return array.get(array.size()-1);
 	}
 
 	/**
@@ -86,7 +101,7 @@ public class Quick_Sort_Naive<Type extends Comparable<? super Type>> extends Qui
 		/*
 		 * Partition the list into three (small, pivot, large) lists
 		 */
-		Type pivot_value = this.median_of_three(array);
+		Type pivot_value = this.choose_pivot(array, 0, array.size());
 
 		for (int i = 0; i < array.size(); i++) {
 			if (array.get(i).compareTo(pivot_value) < 0) {

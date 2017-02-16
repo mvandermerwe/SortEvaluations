@@ -14,6 +14,7 @@ public class Quick_Sort_Naive_Test {
 	@Test
 	public void testSort() {
 		Quick_Sort_Naive<Integer> quickSort = new Quick_Sort_Naive<>();
+		quickSort.set_constant(3);
 
 		ArrayList<Integer> intArray = new ArrayList<>();
 		intArray.add(4);

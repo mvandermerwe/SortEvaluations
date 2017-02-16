@@ -340,14 +340,14 @@ public class Sort_Utils {
 
 			// Calculate constant on Big-Oh
 			if (sort_routine.get_expected_complexity_class() == Complexity_Class.NLogN) {
-				double time_random_divided_by_N_log_N = time_random / (count * Math.log(count));
-				double time_worst_divided_by_N_log_N = time_worst / (count * Math.log(count));
+				double time_random_divided_by_N_log_N = time_random * 1000000000. /(double) (count * Math.log(count) / Math.log(2));
+				double time_worst_divided_by_N_log_N = time_worst * 1000000000./(double) (count * Math.log(count) / Math.log(2));
 
 				System.out.printf("%f\t%f\n", time_random_divided_by_N_log_N, time_worst_divided_by_N_log_N);
 			}
 			if (sort_routine.get_expected_complexity_class() == Complexity_Class.Nsquared) {
-				double time_random_divided_by_N_squared = time_random / (Math.pow(count, 2));
-				double time_worst_divided_by_N_squared = time_worst / (Math.pow(count, 2));
+				double time_random_divided_by_N_squared = time_random * 1000000000. / (Math.pow(count, 2));
+				double time_worst_divided_by_N_squared = time_worst* 1000000000. / (Math.pow(count, 2));
 
 				System.out.printf("%f\t%f\n", time_random_divided_by_N_squared, time_worst_divided_by_N_squared);
 			}

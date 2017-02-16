@@ -15,6 +15,7 @@ public class Quick_Sort_Inplace_First_Pivot_Test {
 	@Test
 	public void testSort() {
 		Quick_Sort_Inplace_First_Pivot<Integer> quickSort = new Quick_Sort_Inplace_First_Pivot<>();
+		quickSort.set_constant(3);
 
 		ArrayList<Integer> intArray = new ArrayList<>();
 		intArray.add(4);
