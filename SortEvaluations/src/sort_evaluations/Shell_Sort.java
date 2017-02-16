@@ -55,7 +55,7 @@ public class Shell_Sort<Type extends Comparable<? super Type>> implements Sorter
 				while (j >= gap && tmp.compareTo(array.get(j - gap)) < 0)
 				{
 					array.set(j, array.get(j - gap));
-
+					array.set(j-gap, tmp);
 					j -= gap;
 				}
 			}
@@ -93,8 +93,7 @@ public class Shell_Sort<Type extends Comparable<? super Type>> implements Sorter
 	@Override
 	public Complexity_Class get_expected_complexity_class()
 	{
-		// ????? what is the complexity class of shell sort?
-		return null;
+		return Complexity_Class.Nsquared;
 	}
 
 }
