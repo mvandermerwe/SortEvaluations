@@ -54,8 +54,7 @@ public class Shell_Sort<Type extends Comparable<? super Type>> implements Sorter
 				int j = i;
 				while (j >= gap && tmp.compareTo(array.get(j - gap)) < 0)
 				{
-					array.set(j, array.get(j - gap));
-					array.set(j-gap, tmp);
+					Sorter.swap(array, j, j-gap);
 					j -= gap;
 				}
 			}
