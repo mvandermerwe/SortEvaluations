@@ -43,7 +43,8 @@ public class Quick_Sort_Inplace_M3<Type extends Comparable<? super Type>> extend
 		int hi = end;
 		if (array.get(start).compareTo(array.get(middle)) > 0) {
 			Sorter.swap(array, start, middle);
-		} else if (array.get(middle).compareTo(array.get(end)) > 0) {
+		}
+		if (array.get(middle).compareTo(array.get(end)) > 0) {
 			Sorter.swap(array, middle, end);
 			if (array.get(end).compareTo(array.get(start)) < 0) {
 				Sorter.swap(array, start, middle);
@@ -51,7 +52,7 @@ public class Quick_Sort_Inplace_M3<Type extends Comparable<? super Type>> extend
 		}
 
 		// Sort accordingly.
-		Sorter.swap(array, end, end-1);
+		Sorter.swap(array, end, end - 1);
 		Sorter.swap(array, middle, end);
 
 		return array.get(end);

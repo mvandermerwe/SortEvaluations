@@ -15,6 +15,7 @@ public class Quick_Sort_Inplace_M3_Test {
 	@Test
 	public void testSort() {
 		Quick_Sort_Inplace_M3<Integer> quickSort = new Quick_Sort_Inplace_M3<>();
+		quickSort.set_constant(3);
 
 		ArrayList<Integer> intArray = new ArrayList<>();
 		intArray.add(4);

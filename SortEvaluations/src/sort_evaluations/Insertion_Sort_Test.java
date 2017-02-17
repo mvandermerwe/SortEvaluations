@@ -17,20 +17,12 @@ public class Insertion_Sort_Test {
 		Insertion_Sort insertion_sort = new Insertion_Sort();
 
 		ArrayList<Integer> intArray = new ArrayList<>();
-		intArray.add(4);
-		intArray.add(7);
-		intArray.add(23);
-		intArray.add(4);
 		intArray.add(8);
 		intArray.add(5);
 
 		ArrayList<Integer> intShouldBe = new ArrayList<>();
-		intShouldBe.add(4);
-		intShouldBe.add(4);
 		intShouldBe.add(5);
-		intShouldBe.add(7);
 		intShouldBe.add(8);
-		intShouldBe.add(23);
 
 		insertion_sort.sort(intArray);
 		assertArrayEquals(intShouldBe.toArray(), intArray.toArray());
@@ -56,6 +48,14 @@ public class Insertion_Sort_Test {
 	@Test
 	public void testInsertionWithBounds() {
 		ArrayList<Integer> intArray = new ArrayList<>();
+		intArray.add(23);
+		intArray.add(4);
+		intArray.add(7);
+		intArray.add(4);
+		intArray.add(8);
+		intArray.add(5);
+
+		ArrayList<Integer> intShouldBe = new ArrayList<>();
 		intArray.add(4);
 		intArray.add(23);
 		intArray.add(7);
@@ -63,15 +63,7 @@ public class Insertion_Sort_Test {
 		intArray.add(8);
 		intArray.add(5);
 
-		ArrayList<Integer> intShouldBe = new ArrayList<>();
-		intShouldBe.add(4);
-		intShouldBe.add(4);
-		intShouldBe.add(7);
-		intShouldBe.add(23);
-		intShouldBe.add(8);
-		intShouldBe.add(5);
-
-		Sort_Utils.insertion_sort(intArray, 0, 4);
+		Sort_Utils.insertion_sort(intArray, 0, 1);
 		assertArrayEquals(intShouldBe.toArray(), intArray.toArray());
 	}
 

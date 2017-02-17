@@ -40,7 +40,7 @@ public class Quick_Sort_Naive<Type extends Comparable<? super Type>> extends Qui
 	 */
 	@Override
 	protected Type choose_pivot(ArrayList<Type> array, int start, int end) {
-		return median_of_three( array );
+		return median_of_three(array);
 	}
 
 	/**
@@ -48,25 +48,33 @@ public class Quick_Sort_Naive<Type extends Comparable<? super Type>> extends Qui
 	 * 
 	 */
 	private Type median_of_three(ArrayList<Type> array) {
+		/*
+		if(array.size()-1 <= 0) {
+			return array.get(array.size()-1);
+		}
+		
 		int middle = array.size() / 2;
 
-		// Compare items to sort start middle end.
-		int lo = 0;
-		int mid = middle;
-		int hi = array.size()-1;
 		if (array.get(0).compareTo(array.get(middle)) > 0) {
 			Sorter.swap(array, 0, middle);
-		} else if (array.get(middle).compareTo(array.get(array.size()-1)) > 0) {
-			Sorter.swap(array, middle, array.size()-1);
+		}
+		if (array.get(middle).compareTo(array.get(array.size() - 1)) > 0) {
+			Sorter.swap(array, middle, array.size() - 1);
 			if (array.get(middle).compareTo(array.get(0)) < 0) {
 				Sorter.swap(array, 0, middle);
 			}
 		}
-
+		
+		
 		Sorter.swap(array, array.size()-1, array.size()-2);
 		Sorter.swap(array, middle, array.size()-1);
 
-		return array.get(array.size()-1);
+		return array.get(array.size() - 1);
+		*/
+		
+		Quick_Sort_Inplace_M3<Type> quickSort = new Quick_Sort_Inplace_M3<>();
+		return quickSort.choose_pivot(array, 0, array.size()-1);
+
 	}
 
 	/**
@@ -82,12 +90,12 @@ public class Quick_Sort_Naive<Type extends Comparable<? super Type>> extends Qui
 	 * put small + pivots + large back into array
 	 */
 	public void quick_sort_naive(ArrayList<Type> array) {
-		
+
 		/*
 		 * Base Case
 		 */
 		if (array.size() <= this.insertionSwitchover) {
-			Sort_Utils.insertion_sort(array, 0, array.size() - 1);
+			Sort_Utils.insertion_sort(array, 0, array.size());
 			return;
 		}
 
@@ -133,7 +141,7 @@ public class Quick_Sort_Naive<Type extends Comparable<? super Type>> extends Qui
 	 * Name of Sort_Tester
 	 */
 	public String name_of_sort() {
-		return "Quick Sort Naive (Cutoff: " +  this.insertionSwitchover + ")";
+		return "Quick Sort Naive (Cutoff: " + this.insertionSwitchover + ")";
 	}
 
 	/**

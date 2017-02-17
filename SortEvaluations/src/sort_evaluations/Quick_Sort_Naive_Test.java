@@ -17,23 +17,9 @@ public class Quick_Sort_Naive_Test {
 		quickSort.set_constant(3);
 
 		ArrayList<Integer> intArray = new ArrayList<>();
-		intArray.add(4);
-		intArray.add(7);
-		intArray.add(23);
-		intArray.add(4);
-		intArray.add(8);
-		intArray.add(5);
-
-		ArrayList<Integer> intShouldBe = new ArrayList<>();
-		intShouldBe.add(4);
-		intShouldBe.add(4);
-		intShouldBe.add(5);
-		intShouldBe.add(7);
-		intShouldBe.add(8);
-		intShouldBe.add(23);
+		//for(int )
 
 		quickSort.sort(intArray);
-		assertArrayEquals(intShouldBe.toArray(), intArray.toArray());
 	}
 	
 	/**
